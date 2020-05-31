@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import MenuBar from './components/MenuBar/MenuBar';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
+    <MenuBar />
     <Dashboard />
   </React.StrictMode>,
   document.getElementById('root')
