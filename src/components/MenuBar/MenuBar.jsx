@@ -8,11 +8,16 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 export default function MenuBar() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElMenu, setAnchorElMenu] = React.useState(null);
+    const [anchorElAccount, setAnchorElAccount] = React.useState(null);
   
-    const handleClose = () => {
-      setAnchorEl(null);
+    const handleCloseMenu = () => {
+      setAnchorElMenu(null);
     };
+
+    const handleCloseAccount = () => {
+      setAnchorElAccount(null);
+    }
 
     return (
         <AppBar position="static">
@@ -23,15 +28,15 @@ export default function MenuBar() {
                 aria-label="menu" 
                 aria-controls={"menu-bar"}
                 aria-haspopup="true" 
-                onClick={(e) => {setAnchorEl(e.currentTarget)}}
+                onClick={(e) => {setAnchorElMenu(e.currentTarget)}}
             />
             
             <Menu
                 id="menu-bar"
-                anchorEl={anchorEl}
+                anchorEl={anchorElMenu}
                 keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
+                open={Boolean(anchorElMenu)}
+                onClose={handleCloseMenu}
                 getContentAnchorEl={null}
                 anchorOrigin={{
                   vertical: 'bottom',
@@ -42,15 +47,42 @@ export default function MenuBar() {
                   horizontal: 'center',
                 }}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+                <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
             </Menu>
              
                 <Typography variant="h6">
                 News
                 </Typography>
-                <AccountCircle />
+                <AccountCircle
+                  edge="start"
+                  color="inherit" 
+                  aria-label="menu" 
+                  aria-controls={"account-bar"}
+                  aria-haspopup="true" 
+                  onClick={(e) => {setAnchorElAccount(e.currentTarget)}}
+               />
+               <Menu
+                  id="account-bar"
+                  anchorEl={anchorElAccount}
+                  keepMounted
+                  open={Boolean(anchorElAccount)}
+                  onClose={handleCloseAccount}
+                  getContentAnchorEl={null}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}
+                >
+                  <MenuItem onClick={handleCloseAccount}>Profile</MenuItem>
+                  <MenuItem onClick={handleCloseAccount}>Account settings</MenuItem>
+                  <MenuItem onClick={handleCloseAccount}>Logout</MenuItem>
+              </Menu>
             </Toolbar>
         </AppBar>
   );
