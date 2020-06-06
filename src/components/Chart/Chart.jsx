@@ -1,45 +1,65 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
+import { tsvToJSON } from '../../utils';
 
 export default function Chart() {
 
+    const [temperatureData, setData] = React.useState(null);
+
+    React.useEffect( () => {
+        getData();
+    }, [])
+
     const getData = () => {
-        const request = new Request('./data/pathfinder_temperatures.tsv', {method: 'GET', mode: 'no-cors'})
-        fetch(request)
+        fetch('./data/pathfinder_temperatures.tsv', {mode: 'no-cors'})
         .then(response => response.text())
-        .then(data=> console.log(data))
+        .then(data=> setData(tsvToJSON(data)))
     }
 
-    getData();
-
-    const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+    let data = null;
+    if(temperatureData)
+    data = {
+        labels: temperatureData.filter(data => data.Sol === '1').map(temp => temp['Local Time']),
+        datasets: [
+            {
+                label: 'T1',
+                data: temperatureData.filter(data => data.Sol === '1').map(
+                    temp => ({x: temp['Local Time'], y: temp['T1 celsius']})
+                ),
+                borderColor: ['#ff6384'],
+                backgroundColor: 'transparent',
+                borderWidth: 1
+            },
+            {
+                label: 'T2',
+                data: temperatureData.filter(data => data.Sol === '1').map(
+                    temp => ({x: temp['Local Time'], y: temp['T2 celsius']})
+                ),
+                borderColor: ['#2babab'],
+                backgroundColor: 'transparent',
+                borderWidth: 1
+            }, 
+            {
+                label: 'T3',
+                data: temperatureData.filter(data => data.Sol === '1').map(
+                    temp => ({x: temp['Local Time'], y: temp['T3 celsius']})
+                ),
+                borderColor: ['#8c4d15'],
+                backgroundColor: 'transparent',
+                borderWidth: 1
+            },
+        ]
     }
 
     return (
-        <div>
-            <Line data={data} height={100}/>
+        <div style={{
+            //width: "100%", overflow: "auto hidden"
+        }}>
+            <div style={{
+              //  height: "auto", width: "4500px"
+            }}>
+                    {data ? <Line data={data} height={100}/> : null}
+            </div>
         </div>
     )
 
