@@ -9,7 +9,7 @@ const VideoFeed = (props) => {
             <iframe 
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/1Ll-VHYxWXU?autoplay=1&start=2"
+                src="https://www.youtube.com/embed/1Ll-VHYxWXU?modestbranding=1&autoplay=1&disablekb=1&loop=1&rel=0&showinfo=0"
                 frameBorder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
