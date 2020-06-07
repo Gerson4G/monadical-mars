@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { OptionsContainer } from './components';
-import { tsvToJSON } from '../../utils';
+import { tsvOrCsvToJSON } from '../../utils';
 
 export default function Chart() {
 
@@ -30,7 +30,7 @@ export default function Chart() {
     const getData = () => {
         fetch('./data/pathfinder_temperatures.tsv', {mode: 'no-cors'})
         .then(response => response.text())
-        .then(data=> setData(tsvToJSON(data)))
+        .then(data=> setData(tsvOrCsvToJSON(data, 'tsv')))
     }
 
     let data = null;
