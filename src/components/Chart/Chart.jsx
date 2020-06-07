@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { OptionsContainer } from './components';
 import { tsvToJSON } from '../../utils';
 
 export default function Chart() {
@@ -77,27 +78,21 @@ export default function Chart() {
         ref={containerRef}
         style={{display: 'flex', width: "100%"}}>
             <div>
-                <div style={{
-                      flexGrow: 1,
-                        display: 'flex',
-                        height: '28em',
-                        width: optionsWidth,
-                }}>
+                <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
+                        <input/>
                         <Tabs
                             value={dayToShow}
                             onChange={(e, day) => setDay(day)}
                             indicatorColor="primary"
                             textColor="primary"
-                            variant="scrollable"
-                            scrollButtons="auto"
                             orientation="vertical"  
-                          aria-label="scrollable auto tabs example"
+                          aria-label="scrollable auto tabs"
                         >
                             { renderTabs().map(a => a) }
                         </Tabs>
                     </AppBar>
-                </div>
+                </OptionsContainer>
             </div>
             <div>
                 {data ? <Line data={data} width={containerRef.current ? (containerRef.current.clientWidth - optionsWidth - 10) : 0} options={{
