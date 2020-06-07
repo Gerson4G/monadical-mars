@@ -11,7 +11,6 @@ export default function Chart() {
     const [temperatureData, setData] = React.useState(null);
     const [days, setDays] = React.useState(1);
     const [dayToShow, setDay] = React.useState(0);
-    const [query, setSearch] = React.useState('');
 
     const getTemperaturesFromDay = (day = 1, temperatureSet = 1) => {
         return temperatureData.filter(data => data.Sol === day.toString()).map(
