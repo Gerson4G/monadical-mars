@@ -65,16 +65,8 @@ export default function Chart() {
 
     const renderTabs = () => {
         let tabs = [];
-        if(!query){
-            for(let i = 1; i < days; i++){
-                tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
-            }
-        }
-        else{
-            const [min] = query.match(/(\d+)/);
-            for(let i = parseInt(min, 10); i < days; i++){
-                tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
-            }
+        for(let i = 1; i < days; i++){
+            tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
         }
         return tabs;
     }
@@ -83,7 +75,13 @@ export default function Chart() {
     const containerRef = React.useRef();
 
     const tabsSearch = ({target: {value}}) => {
-        setSearch(value);
+        if(value){
+            const [min] = value.match(/(\d+)/);
+            const option = document.getElementById(`scrollable-auto-vertical-tab-${min}`);
+            if(option){
+                option.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+            }
+        }
     }
 
     return (
