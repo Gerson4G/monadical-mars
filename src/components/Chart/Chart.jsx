@@ -18,12 +18,11 @@ export default function Chart() {
     }
 
     React.useEffect( () => {
-        getData();
-    }, [])
-
-    React.useEffect( () => {
         if(temperatureData){
             setDays(Math.max(...[...new Set(temperatureData.map( temp => parseInt(temp.Sol, 10)))]));
+        }
+        else{
+            getData();
         }
     }, temperatureData)
 
