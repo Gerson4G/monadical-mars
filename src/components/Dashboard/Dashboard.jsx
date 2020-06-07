@@ -3,6 +3,7 @@ import * as Styled from './components';
 import Chart from '../Chart/Chart';
 import Slideshow from '../Slideshow/Slideshow';
 import VideoFeed from '../VideoFeed/VideoFeed';
+import TableData from '../TableData/TableData';
 
 function Dashboard() {
   return (
@@ -10,7 +11,7 @@ function Dashboard() {
       <Chart />
       <Slideshow />
       <VideoFeed />
-      <div></div>
+      <TableData />
       <div></div>
     </Styled.Container>
   );
