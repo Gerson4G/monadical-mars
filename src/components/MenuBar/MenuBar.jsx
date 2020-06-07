@@ -2,10 +2,9 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuIcon from '@material-ui/icons/Menu';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import { StyledMenuIcon, AccountIcon } from './components';
 
 export default function MenuBar() {
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
@@ -22,7 +21,7 @@ export default function MenuBar() {
     return (
         <AppBar position="static">
             <Toolbar>
-            <MenuIcon
+            <StyledMenuIcon
                 edge="start"
                 color="inherit" 
                 aria-label="menu" 
@@ -55,7 +54,7 @@ export default function MenuBar() {
                 <Typography variant="h6">
                 News
                 </Typography>
-                <AccountCircle
+                <AccountIcon
                   edge="start"
                   color="inherit" 
                   aria-label="menu" 
