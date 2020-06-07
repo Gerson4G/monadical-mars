@@ -2,12 +2,13 @@
 import React, {useState, useEffect} from 'react';
 import Fade from '@material-ui/core/Fade';
 import { arrayBufferToBase64 } from '../../utils';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Slideshow() {
 
     const [slide, changeSlide] = useState(0);
-    const [timeout, changeTimeout] = useState(1000);
-    const [images, setImages] = useState(null);
+    const [timeout,] = useState(1000);
+    const [images, setImages] = useState([]);
 
     const getData = () => {
         const names = ['mars_1', 'mars_2', 'mars_3', 'mars_4'];
@@ -15,18 +16,19 @@ function Slideshow() {
         .then(fullResponses =>
             Promise.all(fullResponses.map( response => response.arrayBuffer()))
         )
-        .then(data => data.forEach( img => {
-            let base64Flag = 'data:image/jpeg;base64,';
-            let imageStr = arrayBufferToBase64(img);
-            const el = document.createElement('img');
-            el.src = base64Flag + imageStr;
-            document.body.appendChild(el);
-        }))
+        .then(data => 
+            setImages(data.map( img => {
+                let base64Flag = 'data:image/jpeg;base64,';
+                let imageStr = arrayBufferToBase64(img);
+                return base64Flag + imageStr;
+            }
+            ))
+        )
     }
 
     const slideTransition = () => {
         setTimeout( () => {
-            if(slide > 3){
+            if(slide === 3){
                 changeSlide(0);
             }
             else{
@@ -38,19 +40,24 @@ function Slideshow() {
     useEffect(slideTransition, [slide]);
 
     useEffect(() => {
-        if(!images){
+        if(images.length === 0){
             getData();
             setImages(true);
         }
     }, [images])
 
+    const renderImage = () => (
+        <Fade in>
+          <img alt="recieved" src={images[slide]} />
+        </Fade>
+    )
+    
+
+
     return (
         <div>
             {
-                [0,1,2,3].map(n =>  <Fade key={n} in={slide === n}>
-                          <span>JEJEJE {n}</span>
-                        </Fade>
-                )
+              !images.length ?  <CircularProgress /> : renderImage()
             }
         </div>
      );
