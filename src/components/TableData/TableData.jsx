@@ -1,10 +1,10 @@
 import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { TableBodyContainer, StyledTable } from './components';
+import TableContainer from '@material-ui/core/TableContainer';
+
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -16,6 +16,7 @@ const rowData = [
   createData('Eclair', 262, 16.0, 24, 6.0),
   createData('Cupcake', 305, 3.7, 67, 4.3),
   createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Cupcake2', 305, 3.7, 67, 4.3),
 ];
 
 
@@ -45,7 +46,7 @@ const TableData = (props) => {
   
   return (
     <TableContainer>
-      <Table aria-label="simple table">
+      <StyledTable aria-label="simple table">
         <TableHead>
           <TableRow>
             <SortableHeader name='name' label='Dessert (100g serving)' />
@@ -55,7 +56,7 @@ const TableData = (props) => {
             <SortableHeader name='protein' label='Protein (g)' />
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBodyContainer>
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
@@ -67,8 +68,8 @@ const TableData = (props) => {
               <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
           ))}
-        </TableBody>
-      </Table>
+        </TableBodyContainer>
+      </StyledTable>
     </TableContainer>
   );
 }
