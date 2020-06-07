@@ -1,30 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { TableBodyContainer, StyledTable } from './components';
 import TableContainer from '@material-ui/core/TableContainer';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { TableBodyContainer, StyledTable } from './components';
+import { tsvOrCsvToJSON } from '../../utils';
 
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rowData = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Cupcake2', 305, 3.7, 67, 4.3),
-];
-
 
 const TableData = (props) => {
 
-  const [sort, changeSort] = React.useState(0);
-  const [sortBy, changeSortBy] = React.useState('');
-  const [rows, setRows] = React.useState(rowData);
+  const getData = () => {
+    fetch('./data/viking_lander_data.csv', {mode: 'no-cors'})
+    .then(response => response.text())
+    .then(data=> setRows(tsvOrCsvToJSON(data, 'csv').map(row => ({...row, id: Math.random()}))))
+  }
+
+  const [sort, changeSort] = useState(0);
+  const [sortBy, changeSortBy] = useState('');
+  const [rows, setRows] = useState(null);
+
+  useEffect(() => {
+    if(!rows){
+      getData();
+    } 
+  }, [rows])
 
   const sortTable = (name) => {
     setRows(
@@ -44,28 +49,32 @@ const TableData = (props) => {
     <TableCell onClick={() => sortTable(name)} align={align}>{label}</TableCell>
   )
   
+  if(!rows){
+    return <CircularProgress />
+  }
+
   return (
     <TableContainer>
       <StyledTable aria-label="simple table">
         <TableHead>
           <TableRow>
-            <SortableHeader name='name' label='Dessert (100g serving)' />
-            <SortableHeader name='calories' label='Calories' />
-            <SortableHeader name='fat' label='Fat (g)' />
-            <SortableHeader name='carbs' label='Carbs (g)' />
-            <SortableHeader name='protein' label='Protein (g)' />
+            <TableCell align='center'>Row</TableCell>
+            {
+              Object.keys(rows[0]).map( header =>
+                <SortableHeader name={header} label={header} />
+              )
+            }
           </TableRow>
         </TableHead>
         <TableBodyContainer>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+          {rows.map( (row, index) => (
+            <TableRow key={row.id}>
+              <TableCell align="right">{index+1}</TableCell>
+              {
+                Object.keys(row).map( property =>
+                  <TableCell align="right">{row[property]}</TableCell>
+                )
+              }
             </TableRow>
           ))}
         </TableBodyContainer>
