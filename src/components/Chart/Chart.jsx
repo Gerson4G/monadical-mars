@@ -11,6 +11,7 @@ export default function Chart() {
     const [temperatureData, setData] = React.useState(null);
     const [days, setDays] = React.useState(1);
     const [dayToShow, setDay] = React.useState(0);
+    const [query, setSearch] = React.useState('');
 
     const getTemperaturesFromDay = (day = 1, temperatureSet = 1) => {
         return temperatureData.filter(data => data.Sol === day.toString()).map(
@@ -64,14 +65,26 @@ export default function Chart() {
 
     const renderTabs = () => {
         let tabs = [];
-        for(let i = 1; i < days; i++){
-            tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
+        if(!query){
+            for(let i = 1; i < days; i++){
+                tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
+            }
+        }
+        else{
+            const [min] = query.match(/(\d+)/);
+            for(let i = parseInt(min, 10); i < days; i++){
+                tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
+            }
         }
         return tabs;
     }
 
     const optionsWidth = 200;
     const containerRef = React.useRef();
+
+    const tabsSearch = ({target: {value}}) => {
+        setSearch(value);
+    }
 
     return (
         <div
@@ -80,7 +93,7 @@ export default function Chart() {
             <div>
                 <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
-                        <input/>
+                        <input onChange={tabsSearch}/>
                         <Tabs
                             value={dayToShow}
                             onChange={(e, day) => setDay(day)}
