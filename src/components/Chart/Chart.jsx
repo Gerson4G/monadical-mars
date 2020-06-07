@@ -69,25 +69,42 @@ export default function Chart() {
         return tabs;
     }
 
+    const optionsWidth = 200;
+    const containerRef = React.useRef();
+
     return (
-        <div style={{
-              flexGrow: 1,
-                width: '100%',
-        }}>
-            <AppBar position="static" color="default">
-                <Tabs
-                  value={dayToShow}
-                  onChange={(e, day) => setDay(day)}
-                  indicatorColor="primary"
-                  textColor="primary"
-                  variant="scrollable"
-                  scrollButtons="auto"
-                  aria-label="scrollable auto tabs example"
-                >
-                    { renderTabs().map(a => a) }
-                </Tabs>
-            </AppBar>
-            {data ? <Line data={data} height={100} /> : null}
+        <div
+        ref={containerRef}
+        style={{display: 'flex', width: "100%"}}>
+            <div>
+                <div style={{
+                      flexGrow: 1,
+                        display: 'flex',
+                        height: '28em',
+                        width: optionsWidth,
+                }}>
+                    <AppBar position="static" color="default">
+                        <Tabs
+                            value={dayToShow}
+                            onChange={(e, day) => setDay(day)}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            variant="scrollable"
+                            scrollButtons="auto"
+                            orientation="vertical"  
+                          aria-label="scrollable auto tabs example"
+                        >
+                            { renderTabs().map(a => a) }
+                        </Tabs>
+                    </AppBar>
+                </div>
+            </div>
+            <div>
+                {data ? <Line data={data} width={containerRef.current ? (containerRef.current.clientWidth - optionsWidth - 10) : 0} options={{
+  responsive: true,
+  maintainAspectRatio: false,
+                }}/> : null}
+            </div>
         </div>
     )
 
@@ -95,7 +112,7 @@ export default function Chart() {
 
 function a11yProps(index) {
   return {
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+    id: `scrollable-auto-vertical-tab-${index}`,
+    'aria-controls': `scrollable-auto-vertical-tabpanel-${index}`,
   };
 }
