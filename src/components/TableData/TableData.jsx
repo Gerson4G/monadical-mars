@@ -1,19 +1,12 @@
-import React, { useEffect, useState, findDOMNode } from 'react';
+import React, { useEffect, useState } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import RootRef from '@material-ui/core/RootRef';
 import { TableBodyContainer, StyledTable } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
-
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
 
 const TableData = (props) => {
 
