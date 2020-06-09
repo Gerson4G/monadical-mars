@@ -57,7 +57,7 @@ const TableData = (props) => {
     <TableCell align="right">{index+1}</TableCell>
     {
       Object.keys(rows[index]).map( property =>
-        <TableCell align="right" key={index}>{rows[index][property]}</TableCell>
+        <TableCell align="right" key={index+Math.random()}>{rows[index][property]}</TableCell>
       )
     }
   </TableRow>
