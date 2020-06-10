@@ -68,6 +68,13 @@ const TableData = (props) => {
   </TableRow>
 } 
 
+  const changeData = (e, data) => {
+    if(dataSelected !== data) {
+      selectData(data);
+      loadingData(true)
+    }
+  } 
+
   if(isLoading){
     return <CircularProgress />
   }
@@ -76,7 +83,7 @@ const TableData = (props) => {
     <TableContainer ref={setContainerNode}>
       <Tabs
         value={dataSelected}
-        onChange={(e, data) => {selectData(data); loadingData(true)}}
+        onChange={changeData}
         indicatorColor="primary"
         textColor="primary"
       >
