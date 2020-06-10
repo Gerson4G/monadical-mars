@@ -4,27 +4,36 @@ import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import { TableBodyContainer, StyledTable, TableHeadGroup } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
+
+const PATHFINDER = 0;
+const VIKING = 1;
+
+const pathFinderUrl = './data/pathfinder_temperatures.tsv';
+const vikingUrl = './data/viking_lander_data.csv';
 
 const TableData = (props) => {
 
   const getData = () => {
-    fetch('./data/viking_lander_data.csv', {mode: 'no-cors'})
+    let url = vikingUrl;
+    if(dataSelected === PATHFINDER){
+      url = pathFinderUrl;
+    }
+    fetch(url, {mode: 'no-cors'})
     .then(response => response.text())
-    .then(data=> setRows(tsvOrCsvToJSON(data, 'csv')))
+    .then(data=> setRows(tsvOrCsvToJSON(data, url.slice(-3))))
   }
 
   const [sort, changeSort] = useState(0);
   const [sortBy, changeSortBy] = useState('');
   const [rows, setRows] = useState(null);
   const [containerNode, setContainerNode] = useState(null);
+  const [dataSelected, selectData] = useState(VIKING);
 
-  useEffect(() => {
-    if(!rows){
-      getData();
-    } 
-  }, [rows])
+  useEffect(getData, [dataSelected]);
 
   const sortTable = (name) => {
     setRows(
@@ -61,6 +70,15 @@ const TableData = (props) => {
 
   return (
     <TableContainer ref={setContainerNode}>
+      <Tabs
+        value={dataSelected}
+        onChange={(e, data) => selectData(data)}
+        indicatorColor="primary"
+        textColor="primary"
+      >
+          <Tab label="Pathfinder Temperature" />
+          <Tab label="Viking Lander Data"/>
+      </Tabs>
       <StyledTable aria-label="simple table" component="div">
         <TableHeadGroup component="div">
           <TableRow component="div">
