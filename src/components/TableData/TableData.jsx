@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
-import TableContainer from '@material-ui/core/TableContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup } from './components';
+import { PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 
 const pathFinderUrl = './data/pathfinder_temperatures.tsv';
@@ -75,12 +74,8 @@ const TableData = (props) => {
     }
   } 
 
-  if(isLoading){
-    return <CircularProgress />
-  }
-
   return (
-    <TableContainer ref={setContainerNode}>
+    <Container ref={setContainerNode}>
       <Tabs
         value={dataSelected}
         onChange={changeData}
@@ -90,27 +85,30 @@ const TableData = (props) => {
           <Tab label="Pathfinder Temperature" />
           <Tab label="Viking Lander Data"/>
       </Tabs>
-      <StyledTable data={dataSelected} aria-label="simple table" component="div">
-        <TableHeadGroup component="div">
-          <TableRow component="div">
-            <TableCell component="div" align='center'>Row</TableCell>
-            {
-              Object.keys(rows[0]).map( header =>
-                <SortableHeader key={header} name={header} label={header} />
-              )
-            }
-          </TableRow>
-        </TableHeadGroup>
-          <List
-            height={350}
-            itemCount={rows.length ?? 0}
-            itemSize={35}
-            width={containerNode?.clientWidth ?? 0}
-          >
-            {renderRow}
-          </List>
-      </StyledTable>
-    </TableContainer>
+      {
+        isLoading ? <CircularProgress /> :
+        <StyledTable data={dataSelected} aria-label="simple table" component="div">
+          <TableHeadGroup component="div">
+            <TableRow component="div">
+              <TableCell component="div" align='center'>Row</TableCell>
+              {
+                Object.keys(rows[0]).map( header =>
+                  <SortableHeader key={header} name={header} label={header} />
+                )
+              }
+            </TableRow>
+          </TableHeadGroup>
+            <List
+              height={350}
+              itemCount={rows.length ?? 0}
+              itemSize={35}
+              width={containerNode?.clientWidth ?? 0}
+            >
+              {renderRow}
+            </List>
+        </StyledTable>
+      }
+    </Container>
   );
 }
 
