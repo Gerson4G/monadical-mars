@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableContainer from '@material-ui/core/TableContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { TableBodyContainer, StyledTable } from './components';
+import { TableBodyContainer, StyledTable, TableHeadGroup } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 
 const TableData = (props) => {
@@ -42,15 +41,15 @@ const TableData = (props) => {
   }
 
   const SortableHeader = ({name, label, align = 'right'}) => (
-    <TableCell onClick={() => sortTable(name)} align={align}>{label}</TableCell>
+    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}>{label}</TableCell>
   )
 
   const renderRow = ({style, index}) => {
-  return <TableRow key={index} style={style}>
-    <TableCell align="right">{index+1}</TableCell>
+  return <TableRow component="div" key={index} style={style}>
+    <TableCell component="div" align="right">{index+1}</TableCell>
     {
       Object.keys(rows[index]).map( property =>
-        <TableCell align="right" key={index+Math.random()}>{rows[index][property]}</TableCell>
+        <TableCell component="div" variant="body" align="right" key={index+Math.random()}>{rows[index][property]}</TableCell>
       )
     }
   </TableRow>
@@ -62,18 +61,17 @@ const TableData = (props) => {
 
   return (
     <TableContainer ref={setContainerNode}>
-      <StyledTable aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align='center'>Row</TableCell>
+      <StyledTable aria-label="simple table" component="div">
+        <TableHeadGroup component="div">
+          <TableRow component="div">
+            <TableCell component="div" align='center'>Row</TableCell>
             {
               Object.keys(rows[0]).map( header =>
                 <SortableHeader key={header} name={header} label={header} />
               )
             }
           </TableRow>
-        </TableHead>
-        <TableBodyContainer>
+        </TableHeadGroup>
           <List
             height={350}
             itemCount={rows.length ?? 0}
@@ -82,7 +80,6 @@ const TableData = (props) => {
           >
             {renderRow}
           </List>
-        </TableBodyContainer>
       </StyledTable>
     </TableContainer>
   );

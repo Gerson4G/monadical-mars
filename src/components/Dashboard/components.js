@@ -5,7 +5,7 @@ const Container = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
 
-    div {
+    > div {
         border: 2px solid red;
     }
 
