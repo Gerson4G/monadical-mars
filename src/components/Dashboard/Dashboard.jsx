@@ -4,6 +4,7 @@ import Chart from '../Chart/Chart';
 import Slideshow from '../Slideshow/Slideshow';
 import VideoFeed from '../VideoFeed/VideoFeed';
 import TableData from '../TableData/TableData';
+import CurrentData from '../CurrentData/CurrentData';
 
 function Dashboard() {
   return (
@@ -12,7 +13,7 @@ function Dashboard() {
       <Slideshow />
       <VideoFeed />
       <TableData />
-      <div></div>
+      <CurrentData />
     </Styled.Container>
   );
 }
