@@ -11,7 +11,7 @@ const CurrentData = (props) => {
  	const getData = () => {
 	    fetch('./data/viking_lander_data.csv', {mode: 'no-cors'})
 	    .then(response => response.text())
-	    .then(data=> setData(tsvOrCsvToJSON(data, 'csv')[0]))
+	    .then(data=> setData(tsvOrCsvToJSON(data, 'csv').slice(-1)[0]))
 	}
 
 	useEffect( () => {

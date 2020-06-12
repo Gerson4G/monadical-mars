@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
@@ -29,6 +29,8 @@ const TableData = (props) => {
   const [containerNode, setContainerNode] = useState(null);
   const [dataSelected, selectData] = useState(VIKING);
   const [isLoading, loadingData] = useState(true);
+  const [query, setQuery] = useState('');
+  const listRef = createRef();
 
   useEffect(getData, [dataSelected]);
 
@@ -37,6 +39,12 @@ const TableData = (props) => {
       loadingData(false)
     }   
   }, [rows.length]);
+
+  useEffect(() => {
+    if(listRef.current && query){
+      listRef.current.scrollToItem(query, "center");
+    }
+  }, [query])
 
   const sortTable = (name) => {
     setRows(
@@ -67,12 +75,19 @@ const TableData = (props) => {
   </TableRow>
 } 
 
+
   const changeData = (e, data) => {
     if(dataSelected !== data) {
       selectData(data);
       loadingData(true)
     }
   } 
+
+  const searchRow = ({target: {value}}) => {
+    if(!isNaN(parseInt(value, 10))){
+      setQuery(value);
+    }
+  }
 
   return (
     <Container ref={setContainerNode}>
@@ -85,6 +100,7 @@ const TableData = (props) => {
           <Tab label="Pathfinder Temperature" />
           <Tab label="Viking Lander Data"/>
       </Tabs>
+      <input value={query} onChange={searchRow}/>
       {
         isLoading ? <CircularProgress /> :
         <StyledTable data={dataSelected} aria-label="simple table" component="div">
@@ -103,6 +119,7 @@ const TableData = (props) => {
               itemCount={rows.length ?? 0}
               itemSize={35}
               width={containerNode?.clientWidth ?? 0}
+              ref={listRef}
             >
               {renderRow}
             </List>

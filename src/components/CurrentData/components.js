@@ -11,12 +11,12 @@ const Container = styled.div`
     > div:first-child {
         display: grid;
     	grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
     }
 
     > div:nth-child(2) {
         display: grid;
-    	grid-template-columns: repeat(3, 1fr);
-    	grid-tempalte-rows: 2;
+    	grid-template-columns: repeat(2, 1fr);
     }	
 	
 `;
