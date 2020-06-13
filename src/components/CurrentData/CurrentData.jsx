@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container, StyledCard } from './components';
+import {FormattedMessage} from 'react-intl';
 import { tsvOrCsvToJSON } from '../../utils';
 
 const CurrentData = (props) => {
@@ -38,16 +39,16 @@ const CurrentData = (props) => {
 				</div>
 				<div>
 				    <StyledCard>
-				      	<Content data={data.wind_m_sec} header='Wind Speed'/>
+				      	<Content data={data.wind_m_sec} header='wind_speed'/>
 				    </StyledCard>
 			      	<StyledCard>
-				      	<Content data={data['wind_deg.']} header='Wind Degree'/>
+				      	<Content data={data['wind_deg.']} header='wind_degree'/>
 				    </StyledCard>
 			    	<StyledCard>
-				      	<Content data={data.pressure_mb} header='Pressure' />
+				      	<Content data={data.pressure_mb} header='pressure' />
 				    </StyledCard>
 			    	<StyledCard>
-				      	<Content data={data.temp_C} header='Temperature'/>
+				      	<Content data={data.temp_C} header='temperature'/>
 				    </StyledCard>
 				</div>
 	    	</Container>
@@ -59,7 +60,12 @@ export default CurrentData;
 
 const Content = ({data, children, header}) => (
 	<CardContent>
-		<h3>{header}</h3>
+		<h3>
+			<FormattedMessage
+	          id={`currentData.${header}`}
+	          defaultMessage={header}
+	        />
+		</h3>
 		{data ?? <CircularProgress />}
 	</CardContent>
 )
