@@ -1,0 +1,6 @@
+{
+	"currentData.wind_speed": "Velocidad del viento", 
+	"currentData.temperature": "Temperatura (Grados Centigrados)", 
+	"currentData.pressure": "Presion", 
+	"currentData.wind_degree": "Angulo del viento"
+}
