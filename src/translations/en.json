@@ -2,5 +2,6 @@
 	"currentData.wind_speed": "Wind Speed", 
 	"currentData.temperature": "Temperature", 
 	"currentData.pressure": "Pressure", 
-	"currentData.wind_degree": "Wind Degree"
+	"currentData.wind_degree": "Wind Degree",
+	"menu.select_language": "Select a language"
 }

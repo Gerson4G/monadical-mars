@@ -2,5 +2,6 @@
 	"currentData.wind_speed": "Velocidad del viento", 
 	"currentData.temperature": "Temperatura (Grados Centigrados)", 
 	"currentData.pressure": "Presion", 
-	"currentData.wind_degree": "Angulo del viento"
+	"currentData.wind_degree": "Angulo del viento",
+	"menu.select_language": "Seleccione el idioma"
 }

@@ -4,6 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ListSubheader from "@material-ui/core/ListSubheader";
+import {FormattedMessage} from 'react-intl';
 import { StyledMenuIcon, AccountIcon } from './components';
 
 const MenuBar = (props) => {
@@ -84,6 +86,7 @@ const MenuBar = (props) => {
                     horizontal: 'center',
                   }}
                 >
+                  <ListSubheader><FormattedMessage id='menu.select_language' default='Select a language'/></ListSubheader>
                   <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
                   <MenuItem onClick={() => changeLanguage('es')}>Espanol</MenuItem>
               </Menu>
