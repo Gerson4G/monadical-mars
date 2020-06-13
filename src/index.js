@@ -16,11 +16,12 @@ const data = {
 const App = (props) => {
 
 	const [language, setLanguage] = useState('en');
+	const [screen, selectScreen] = useState('dashboard');
 
 	return(
   	<IntlProvider locale={language} messages={data[language]}>
-		<MenuBar setLanguage={setLanguage}/>
-	    <Dashboard />
+		<MenuBar setLanguage={setLanguage} selectScreen={selectScreen}/>
+	    <Dashboard screen={screen}/>
 	</IntlProvider>
 	);
 }

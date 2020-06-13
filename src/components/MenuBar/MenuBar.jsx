@@ -6,10 +6,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {FormattedMessage} from 'react-intl';
-import { StyledMenuIcon, AccountIcon } from './components';
+import { StyledMenuIcon, AccountIcon, screens } from './components';
 
 const MenuBar = (props) => {
-    const { setLanguage } = props;
+    const { setLanguage, selectScreen } = props;
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [anchorElAccount, setAnchorElAccount] = React.useState(null);
   
@@ -24,6 +24,11 @@ const MenuBar = (props) => {
     const changeLanguage = (lang) => {
       setLanguage(lang);
       handleCloseAccount();
+    }
+
+    const changeScreen = (screen) => {
+      handleCloseMenu();
+      selectScreen(screen);
     }
 
     return (
@@ -54,9 +59,7 @@ const MenuBar = (props) => {
                   horizontal: 'center',
                 }}
             >
-                <MenuItem onClick={handleCloseMenu}>Profile</MenuItem>
-                <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-                <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+              {screens.map( screen => <MenuItem onClick={() => changeScreen(screen.name)}>{screen.label}</MenuItem>)}
             </Menu>
              
                 <Typography variant="h6">
