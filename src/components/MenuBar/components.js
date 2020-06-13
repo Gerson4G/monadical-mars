@@ -5,6 +5,7 @@ import LanguageIcon from '@material-ui/icons/Language';
 
 
 const screens = [
+	{name: 'dashboard', label: 'Dashboard'},
 	{name: 'chart', label: 'Pathfinder data Chart'},
 	{name: 'slideshow', label: 'Images Slideshow'},
 	{name: 'videofeed', label: 'Live Video'},
