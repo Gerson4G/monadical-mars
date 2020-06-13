@@ -6,7 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { StyledMenuIcon, AccountIcon } from './components';
 
-export default function MenuBar() {
+const MenuBar = (props) => {
+    const { setLanguage } = props;
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [anchorElAccount, setAnchorElAccount] = React.useState(null);
   
@@ -16,6 +17,11 @@ export default function MenuBar() {
 
     const handleCloseAccount = () => {
       setAnchorElAccount(null);
+    }
+
+    const changeLanguage = (lang) => {
+      setLanguage(lang);
+      handleCloseAccount();
     }
 
     return (
@@ -78,11 +84,12 @@ export default function MenuBar() {
                     horizontal: 'center',
                   }}
                 >
-                  <MenuItem onClick={handleCloseAccount}>Profile</MenuItem>
-                  <MenuItem onClick={handleCloseAccount}>Account settings</MenuItem>
-                  <MenuItem onClick={handleCloseAccount}>Logout</MenuItem>
+                  <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
+                  <MenuItem onClick={() => changeLanguage('es')}>Espanol</MenuItem>
               </Menu>
             </Toolbar>
         </AppBar>
   );
 }
+
+export default MenuBar;
