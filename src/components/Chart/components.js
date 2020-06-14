@@ -12,6 +12,9 @@ const OptionsContainer = styled.div`
 	.MuiTabs-scroller {
 		overflow: auto!important;
 	}
+	.Mui-selected {
+		background: #ffe8e8;
+	}
 `;
 
 const ChartContainer = styled.div`

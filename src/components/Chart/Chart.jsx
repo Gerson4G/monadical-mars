@@ -1,6 +1,7 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
+import { useIntl } from 'react-intl';
 import { Line } from 'react-chartjs-2';
 import Tab from '@material-ui/core/Tab';
 import {FormattedMessage} from 'react-intl';
@@ -13,6 +14,7 @@ export default function Chart() {
     const [days, setDays] = React.useState(1);
     const [dayToShow, setDay] = React.useState(0);
     const [query, setQuery] = React.useState('');
+    const intl = useIntl();
 
     const getTemperaturesFromDay = (day = 1, temperatureSet = 1) => {
         return temperatureData.filter(data => data.Sol === day.toString()).map(
@@ -41,21 +43,21 @@ export default function Chart() {
         labels: temperatureData.filter(data => data.Sol === (dayToShow+1).toString()).map(temp => temp['Local Time']),
         datasets: [
             {
-                label: 'T1',
+                label: intl.formatMessage({ id: 'chart.label_1' }),
                 data: getTemperaturesFromDay(dayToShow+1, 1),
                 borderColor: ['#ff6384'],
                 backgroundColor: 'transparent',
                 borderWidth: 1
             },
             {
-                label: 'T2',
+                label: intl.formatMessage({ id: 'chart.label_2' }),
                 data: getTemperaturesFromDay(dayToShow+1, 2),
                 borderColor: ['#2babab'],
                 backgroundColor: 'transparent',
                 borderWidth: 1
             }, 
             {
-                label: 'T3',
+                label: intl.formatMessage({ id: 'chart.label_3' }),
                 data: getTemperaturesFromDay(dayToShow+1, 3),
                 borderColor: ['#8c4d15'],
                 backgroundColor: 'transparent',

@@ -10,5 +10,8 @@
 	"menu.videofeed": "Transmision de video",
 	"menu.tabledata": "Tabla de datos (Viking Lander & Pathfinder)",
 	"menu.currentdata": "Ultimos datos del Viking Lander",
-	"chart.searchinput": "Busca un dia de interes"
+	"chart.searchinput": "Busca un dia de interes",
+	"chart.label_1": "Temperatura 1",
+	"chart.label_2": "Temperatura 2",
+	"chart.label_3": "Temperatura 3"
 }
