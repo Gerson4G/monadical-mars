@@ -9,5 +9,6 @@
 	"menu.slideshow": "Images Slideshow",
 	"menu.videofeed": "Live Video",
 	"menu.tabledata": "Data tables (Viking Lander & Pathfinder)",
-	"menu.currentdata": "Lastest data from Viking Lander"
+	"menu.currentdata": "Lastest data from Viking Lander",
+	"chart.searchinput": "Search a day of interest"
 }

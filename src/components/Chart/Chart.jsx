@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import {FormattedMessage} from 'react-intl';
+import TextField from '@material-ui/core/TextField';
 import { OptionsContainer } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 
@@ -11,6 +13,7 @@ export default function Chart() {
     const [temperatureData, setData] = React.useState(null);
     const [days, setDays] = React.useState(1);
     const [dayToShow, setDay] = React.useState(0);
+    const [query, setQuery] = React.useState('');
 
     const getTemperaturesFromDay = (day = 1, temperatureSet = 1) => {
         return temperatureData.filter(data => data.Sol === day.toString()).map(
@@ -74,8 +77,9 @@ export default function Chart() {
     const containerRef = React.useRef();
 
     const tabsSearch = ({target: {value}}) => {
-        if(value){
-            const [min] = value.match(/(\d+)/);
+        const [min] = value.match(/[0-9]*/) ?? '';
+        setQuery(min);
+        if(value){            
             const option = document.getElementById(`scrollable-auto-vertical-tab-${min}`);
             if(option){
                 option.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
@@ -90,7 +94,7 @@ export default function Chart() {
             <div>
                 <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
-                        <input onChange={tabsSearch}/>
+                        <TextField value={query} onChange={tabsSearch} label={<FormattedMessage id='chart.searchinput' default='' />} variant="filled" />
                         <Tabs
                             value={dayToShow}
                             onChange={(e, day) => setDay(day)}
