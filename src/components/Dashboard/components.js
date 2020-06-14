@@ -5,10 +5,6 @@ const Container = styled.div`
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
 
-    > div {
-        border: 2px solid red;
-    }
-
     > div:first-child {
         grid-column: 1 / -1 ;
         grid-row: 1;

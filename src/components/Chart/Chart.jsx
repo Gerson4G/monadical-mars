@@ -1,11 +1,10 @@
 import React from 'react'
-import { Line } from 'react-chartjs-2';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
+import { Line } from 'react-chartjs-2';
 import Tab from '@material-ui/core/Tab';
 import {FormattedMessage} from 'react-intl';
-import TextField from '@material-ui/core/TextField';
-import { OptionsContainer } from './components';
+import { OptionsContainer, StyledCard, ChartContainer, SearchInput } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 
 export default function Chart() {
@@ -88,13 +87,13 @@ export default function Chart() {
     }
 
     return (
-        <div
+        <StyledCard raised
         ref={containerRef}
         style={{display: 'flex', width: "100%"}}>
             <div>
                 <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
-                        <TextField value={query} onChange={tabsSearch} label={<FormattedMessage id='chart.searchinput' default='' />} variant="filled" />
+                        <SearchInput value={query} onChange={tabsSearch} label={<FormattedMessage id='chart.searchinput' default='' />} variant="filled" />
                         <Tabs
                             value={dayToShow}
                             onChange={(e, day) => setDay(day)}
@@ -108,13 +107,13 @@ export default function Chart() {
                     </AppBar>
                 </OptionsContainer>
             </div>
-            <div>
+            <ChartContainer>
                 {data ? <Line data={data} width={containerRef.current ? (containerRef.current.clientWidth - optionsWidth - 10) : 0} options={{
   responsive: true,
   maintainAspectRatio: false,
                 }}/> : null}
-            </div>
-        </div>
+            </ChartContainer>
+        </StyledCard>
     )
 
 }
