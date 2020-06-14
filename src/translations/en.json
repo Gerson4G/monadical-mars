@@ -3,5 +3,11 @@
 	"currentData.temperature": "Temperature", 
 	"currentData.pressure": "Pressure", 
 	"currentData.wind_degree": "Wind Degree",
-	"menu.select_language": "Select a language"
+	"menu.select_language": "Select a language",
+	"menu.dashboard": "Dashboard",
+	"menu.chart": "Pathfinder data Chart",
+	"menu.slideshow": "Images Slideshow",
+	"menu.videofeed": "Live Video",
+	"menu.tabledata": "Data tables (Viking Lander & Pathfinder)",
+	"menu.currentdata": "Lastest data from Viking Lander"
 }

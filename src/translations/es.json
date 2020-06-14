@@ -3,5 +3,11 @@
 	"currentData.temperature": "Temperatura (Grados Centigrados)", 
 	"currentData.pressure": "Presion", 
 	"currentData.wind_degree": "Angulo del viento",
-	"menu.select_language": "Seleccione el idioma"
+	"menu.select_language": "Seleccione el idioma",
+	"menu.dashboard": "Tablero Principal",
+	"menu.chart": "Grafica de datos del Pathfinder",
+	"menu.slideshow": "Carrusel de imagenes",
+	"menu.videofeed": "Transmision de video",
+	"menu.tabledata": "Tabla de datos (Viking Lander & Pathfinder)",
+	"menu.currentdata": "Ultimos datos del Viking Lander"
 }

@@ -59,7 +59,12 @@ const MenuBar = (props) => {
                   horizontal: 'center',
                 }}
             >
-              {screens.map( screen => <MenuItem onClick={() => changeScreen(screen.name)}>{screen.label}</MenuItem>)}
+              {
+                screens.map( screen =>
+                <MenuItem onClick={() => changeScreen(screen.name)}>
+                  <FormattedMessage id={`menu.${screen.name}`} default={screen.label}/>
+                </MenuItem>)
+              }
             </Menu>
              
                 <Typography variant="h6">
