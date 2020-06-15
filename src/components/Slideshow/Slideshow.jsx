@@ -2,7 +2,11 @@
 import React, {useState, useEffect} from 'react';
 import Fade from '@material-ui/core/Fade';
 import { arrayBufferToBase64 } from '../../utils';
+import { BulletPoint, BulletsContainer, SlideShowContainer } from './components';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+const names = ['mars_1', 'mars_2', 'mars_3', 'mars_4', 'mars_5', 'mars_6', 'mars_7', 'mars_8', 'mars_9'];
+let timer = null;
 
 function Slideshow() {
 
@@ -11,7 +15,6 @@ function Slideshow() {
     const [images, setImages] = useState([]);
 
     const getData = () => {
-        const names = ['mars_1', 'mars_2', 'mars_3', 'mars_4'];
         Promise.all( names.map( name => fetch(`./data/images/${name}.jpg`, {mode: 'no-cors'})))        
         .then(fullResponses =>
             Promise.all(fullResponses.map( response => response.arrayBuffer()))
@@ -27,8 +30,8 @@ function Slideshow() {
     }
 
     const slideTransition = () => {
-        setTimeout( () => {
-            if(slide === 3){
+        timer = setTimeout( () => {
+            if(slide === names.length-1){
                 changeSlide(0);
             }
             else{
@@ -46,19 +49,28 @@ function Slideshow() {
         }
     }, [images])
 
+    const selectSlide = (selectedSlide) => {
+        changeSlide(selectedSlide);
+        clearTimeout(timer);
+
+    }
+
     const renderImage = () => (
         <Fade in>
-          <img alt="recieved" src={images[slide]} />
+            <img alt="recieved" src={images[slide]} />
         </Fade>
     )
-    
-
 
     return (
         <div>
+            <SlideShowContainer>
             {
               !images.length ?  <CircularProgress /> : renderImage()
             }
+            </SlideShowContainer>
+            <BulletsContainer>
+                { images.length && images.map ((img, i) => <BulletPoint key={i} active={i === slide} onClick={() => selectSlide(i)}/>) }
+            </BulletsContainer>
         </div>
      );
 }
