@@ -63,7 +63,7 @@ function Slideshow() {
 
     return (
         <div>
-            <SlideShowContainer>
+            <SlideShowContainer raised>
             {
               !images.length ?  <CircularProgress /> : renderImage()
             }
