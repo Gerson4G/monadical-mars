@@ -2,15 +2,15 @@ import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
 
 export const BulletPoint = styled.div`
-	height: 0.8rem;
-	width: 0.8rem;
+	height: 1rem;
+	width: 1rem;
 	background: ${({active}) => active ? 'red' : 'blue'};
 	border-radius: 2em;
 	position: relative;
-	top: -2em;
+	top: -2.5em;
 	left: 0;
 	right: 0;
-	margin: 0 0.2rem;
+	margin: 0 0.3rem;
 	cursor: pointer;
 `;
 
