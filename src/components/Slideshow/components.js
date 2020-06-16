@@ -1,4 +1,6 @@
+import React from 'react';
 import Card from '@material-ui/core/Card';
+import Tooltip from '@material-ui/core/Tooltip';
 import styled from 'styled-components';
 
 export const BulletPoint = styled.div`
@@ -29,4 +31,13 @@ export const SlideShowContainer = styled(Card)`
 		scale: 1.5;
 		margin: 1em 0;
 	}
+`;
+
+export const Popup = styled(props => (
+  <Tooltip classes={{ popper: props.className, tooltip: "tooltip" }} {...props} />
+))`
+  & .tooltip {
+    position: relative;
+    top: 25em;
+  }
 `;

@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import Fade from '@material-ui/core/Fade';
 import { arrayBufferToBase64 } from '../../utils';
-import { BulletPoint, BulletsContainer, SlideShowContainer } from './components';
+import { BulletPoint, BulletsContainer, SlideShowContainer, Popup } from './components';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const names = ['mars_1', 'mars_2', 'mars_3', 'mars_4', 'mars_5', 'mars_6', 'mars_7', 'mars_8', 'mars_9'];
@@ -20,10 +20,14 @@ function Slideshow() {
             Promise.all(fullResponses.map( response => response.arrayBuffer()))
         )
         .then(data => 
-            setImages(data.map( img => {
+            setImages(data.map( (img, i) => {
                 let base64Flag = 'data:image/jpeg;base64,';
                 let imageStr = arrayBufferToBase64(img);
-                return base64Flag + imageStr;
+                return {
+                    src: base64Flag + imageStr,
+                    name: `Mars photo number ${i}`,
+                    description: "Random description of where and when this pic was taken. It adds info value"
+                };
             }
             ))
         )
@@ -55,9 +59,18 @@ function Slideshow() {
 
     }
 
+    const tooltipContent = ({name, description}) => (
+        <div>
+            <h3>{name}</h3>
+            <h4>{description}</h4>
+        </div>
+    )
+
     const renderImage = () => (
         <Fade in>
-            <img alt="recieved" src={images[slide]} />
+            <Popup placement="bottom" title={tooltipContent(images[slide])} >
+                <img alt="recieved" src={images[slide].src} />
+            </Popup>
         </Fade>
     )
 
