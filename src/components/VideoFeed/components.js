@@ -3,7 +3,26 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import styled from 'styled-components';
 
 export const Container = styled(Card)`
+`;
 
+export const LiveText = styled.h3`
+	z-index: 10;
+	position: absolute;
+	margin-left: 2em;
+	animation: color-animation 6s infinite linear alternate;
+	visibility: ${({playing}) => playing ? 'visible' : 'hidden'};
+
+	@keyframes color-animation {
+	    0% {
+	       color: black;
+	    }
+	    50% {
+	       color: red;
+	    } 
+	    100% {
+	       color: white;
+	    } 
+	}
 `;
 
 export const Video = styled.video`
