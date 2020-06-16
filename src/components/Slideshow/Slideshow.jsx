@@ -56,7 +56,10 @@ function Slideshow() {
     const selectSlide = (selectedSlide) => {
         changeSlide(selectedSlide);
         clearTimeout(timer);
+    }
 
+    const freezeSlide = () => {
+        clearTimeout(timer);
     }
 
     const tooltipContent = ({name, description}) => (
@@ -69,7 +72,7 @@ function Slideshow() {
     const renderImage = () => (
         <Fade in>
             <Popup placement="bottom" title={tooltipContent(images[slide])} >
-                <img alt="recieved" src={images[slide].src} />
+                <img onMouseOver={freezeSlide} onMouseLeave={slideTransition} alt="recieved" src={images[slide].src} />
             </Popup>
         </Fade>
     )
