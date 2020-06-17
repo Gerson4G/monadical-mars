@@ -4,10 +4,15 @@ import TextField from '@material-ui/core/TextField';
 import TableHead from '@material-ui/core/TableHead';
 import Table from '@material-ui/core/Table';
 import Card from '@material-ui/core/Card';
+import Tabs from '@material-ui/core/Tabs';
 
 
 const PATHFINDER = 0;
 const VIKING = 1;
+
+const StyledTabs = styled(Tabs)`
+	padding-bottom: 0.5rem;
+`;
 
 const Container = styled(Card)`
 	min-height: 20em;
@@ -32,7 +37,16 @@ const StyledTable = styled(Table)`
 		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2.8em' : '2em' };
 	}
 	[role="columnheader"] {
-		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2em' : '1.2em' };
+		font-weight: bold;
+		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2em' : '1.1em' };
+	}
+	[role="row"] {
+		&:nth-of-type(even) {
+      		background: lightblue;
+    	}
+	}
+	[role="rowgroup"] [role="row"] {
+		background: #84a1aa;
 	}
 `;
 
@@ -51,4 +65,4 @@ const SearchField = styled(TextField)`
 	}
 `;
 
-export { PATHFINDER, VIKING, StyledTable, TableBodyContainer, TableHeadGroup, Container, SearchField};
+export { StyledTabs, PATHFINDER, VIKING, StyledTable, TableBodyContainer, TableHeadGroup, Container, SearchField};

@@ -3,9 +3,8 @@ import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container, SearchField } from './components';
+import { StyledTabs, PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container, SearchField } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 import {FormattedMessage} from 'react-intl';
 
@@ -95,7 +94,7 @@ const TableData = (props) => {
 
   return (
     <Container raised ref={setContainerNode}>
-      <Tabs
+      <StyledTabs
         value={dataSelected}
         onChange={changeData}
         indicatorColor="primary"
@@ -104,7 +103,7 @@ const TableData = (props) => {
           <Tab label="Pathfinder Temperature" />
           <Tab label="Viking Lander Data"/>
           <SearchField value={query} label={<FormattedMessage id='table.searchinput' default='' />} />
-      </Tabs>
+      </StyledTabs>
       {
         isLoading ? <CircularProgress /> :
         <StyledTable data={dataSelected} aria-label="simple table" component="div">
