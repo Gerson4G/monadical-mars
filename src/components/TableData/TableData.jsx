@@ -5,8 +5,9 @@ import TableRow from '@material-ui/core/TableRow';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container } from './components';
+import { PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container, SearchField } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
+import {FormattedMessage} from 'react-intl';
 
 const pathFinderUrl = './data/pathfinder_temperatures.tsv';
 const vikingUrl = './data/viking_lander_data.csv';
@@ -76,21 +77,24 @@ const TableData = (props) => {
 } 
 
 
-  const changeData = (e, data) => {
-    if(dataSelected !== data) {
+  const changeData = ({target}, data) => {
+    if(target.type === 'text'){
+      searchRow(target.value);
+    }
+    else if(dataSelected !== data) {
       selectData(data);
-      loadingData(true)
+      loadingData(true);
+      setQuery('');
     }
   } 
 
-  const searchRow = ({target: {value}}) => {
-    if(!isNaN(parseInt(value, 10))){
-      setQuery(value);
-    }
+  const searchRow = (value) => {
+    const [min] = value.match(/[0-9]*/) ?? '';
+    setQuery(min);
   }
 
   return (
-    <Container ref={setContainerNode}>
+    <Container raised ref={setContainerNode}>
       <Tabs
         value={dataSelected}
         onChange={changeData}
@@ -99,8 +103,8 @@ const TableData = (props) => {
       >
           <Tab label="Pathfinder Temperature" />
           <Tab label="Viking Lander Data"/>
+          <SearchField value={query} label={<FormattedMessage id='table.searchinput' default='' />} />
       </Tabs>
-      <input value={query} onChange={searchRow}/>
       {
         isLoading ? <CircularProgress /> :
         <StyledTable data={dataSelected} aria-label="simple table" component="div">
