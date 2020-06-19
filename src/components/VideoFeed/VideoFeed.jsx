@@ -1,6 +1,7 @@
 
 import React, {useState, useEffect, createRef} from 'react';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import { FormattedMessage } from 'react-intl';
 import { Container, Video, Presentation, LiveText } from './components';
 
 const VideoFeed = (props) => {
@@ -18,7 +19,7 @@ const VideoFeed = (props) => {
         <Container raised ref={containerRef}>
         	<Presentation height={height} playing={playing}>
         		<PlayCircleFilledIcon onClick={() => playVideo(true)} className='play-icon'/>
-        		<h2>Here you can see live video sent from mars. Click to Play</h2>
+        		<h2><FormattedMessage id="video.placeholder"/></h2>
         	</Presentation>
         	<LiveText playing={playing}>LIVE VIDEO</LiveText>
             <Video loop mute controls={playing} width="100%">

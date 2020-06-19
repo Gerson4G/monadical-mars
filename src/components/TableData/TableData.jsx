@@ -2,14 +2,20 @@ import React, { useEffect, useState, createRef } from 'react';
 import TableCell from '@material-ui/core/TableCell';
 import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
+import { useIntl } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tab from '@material-ui/core/Tab';
-import { StyledTabs, PATHFINDER, VIKING, TableBodyContainer, StyledTable, TableHeadGroup, Container, SearchField } from './components';
+import { StyledTabs, PATHFINDER, VIKING, StyledTable, TableHeadGroup, Container, SearchField } from './components';
 import { tsvOrCsvToJSON } from '../../utils';
 import {FormattedMessage} from 'react-intl';
 
 const pathFinderUrl = './data/pathfinder_temperatures.tsv';
 const vikingUrl = './data/viking_lander_data.csv';
+
+const headers = {
+  row: 'header_1',
+  year: 'header_2'
+}
 
 const TableData = (props) => {
 
@@ -30,6 +36,7 @@ const TableData = (props) => {
   const [dataSelected, selectData] = useState(VIKING);
   const [isLoading, loadingData] = useState(true);
   const [query, setQuery] = useState('');
+  const intl = useIntl();
   const listRef = createRef();
 
   useEffect(getData, [dataSelected]);
@@ -61,7 +68,7 @@ const TableData = (props) => {
   }
 
   const SortableHeader = ({name, label, align = 'right'}) => (
-    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}>{label}</TableCell>
+    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}><FormattedMessage id={`table.${headers[label.toLowerCase()]}`} default={label}/></TableCell>
   )
 
   const renderRow = ({style, index}) => {
@@ -100,8 +107,8 @@ const TableData = (props) => {
         indicatorColor="primary"
         textColor="primary"
       >
-          <Tab label="Pathfinder Temperature" />
-          <Tab label="Viking Lander Data"/>
+          <Tab label={intl.formatMessage({ id: 'table_data.label_1' })} />
+          <Tab label={intl.formatMessage({ id: 'table_data.label_2' })} />
           <SearchField value={query} label={<FormattedMessage id='table.searchinput' default='' />} />
       </StyledTabs>
       {
@@ -109,7 +116,7 @@ const TableData = (props) => {
         <StyledTable data={dataSelected} aria-label="simple table" component="div">
           <TableHeadGroup component="div">
             <TableRow component="div">
-              <TableCell component="div" align='center'>Row</TableCell>
+              <TableCell component="div" align='center'><FormattedMessage id='table.header_1'/></TableCell>
               {
                 Object.keys(rows[0]).map( header =>
                   <SortableHeader key={header} name={header} label={header} />

@@ -29,7 +29,7 @@ export default function Chart() {
         else{
             getData();
         }
-    }, temperatureData)
+    }, [temperatureData])
 
     const getData = () => {
         fetch('./data/pathfinder_temperatures.tsv', {mode: 'no-cors'})
@@ -69,7 +69,8 @@ export default function Chart() {
     const renderTabs = () => {
         let tabs = [];
         for(let i = 1; i < days; i++){
-            tabs = tabs.concat(<Tab key={i} label={`Day ${i}`} {...a11yProps(i)} />);
+            const label = intl.formatMessage({ id: 'chart.day_selection', values: {i} })
+            tabs = tabs.concat(<Tab key={i} label={label} {...a11yProps(i)} />);
         }
         return tabs;
     }

@@ -14,5 +14,11 @@
 	"chart.label_1": "Temperatura 1",
 	"chart.label_2": "Temperatura 2",
 	"chart.label_3": "Temperatura 3",
-	"table.searchinput": "Busca una fila de interes"
+	"table.searchinput": "Busca una fila de interes",
+	"video.placeholder": "Esta seccion es para ver la video transmision. Haz click para iniciar",
+	"table_data.label_1": "Datos de temperatura del PathFinder",
+	"table_data.label_2": "Datos del Viking Lander",
+	"chart.day_selection": "Dia {i}",
+	"table.header_1": "Fila",
+	"table.header_2": "Anio"
 }
