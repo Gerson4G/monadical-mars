@@ -1,16 +1,22 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createRef} from 'react';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import { arrayBufferToBase64 } from '../../utils';
 import { Container, Video, Presentation, LiveText } from './components';
 
 const VideoFeed = (props) => {
 
-	const [playing, playVideo] = useState(false);
+  const [playing, playVideo] = useState(false);
+  const [height, setHeight] = useState(null);
+  const containerRef = createRef(null);
+
+  useEffect(() => {
+    setHeight(containerRef.current.clientHeight);
+    console.log(containerRef.current.clientHeight)
+  }, [containerRef])
 
     return (
-        <Container raised>
-        	<Presentation playing={playing}>
+        <Container raised ref={containerRef}>
+        	<Presentation height={height} playing={playing}>
         		<PlayCircleFilledIcon onClick={() => playVideo(true)} className='play-icon'/>
         		<h2>Here you can see live video sent from mars. Click to Play</h2>
         	</Presentation>

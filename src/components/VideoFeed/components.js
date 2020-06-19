@@ -37,7 +37,7 @@ export const Presentation = styled.div`
     left: 50.3%;
     z-index: 2;
     background: black;
-	height: 56%;
+	height: ${({height}) => height ? `${height}px` : '49%'};
 	width: 49.3%;
 	display: flex;
 	flex-direction: column;
