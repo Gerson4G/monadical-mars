@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 
 const StyledCard = styled(Card)`
     margin: 1em;
-    width: 10em;
+    width: 15em;
     text-align: center;
     && { background: #4b4b4b; color: white; }
     .first-row & {
@@ -28,7 +28,11 @@ const Container = styled(Card)`
     > div:nth-child(2) {
         display: grid;
         justify-items: center;
-    	grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1 1fr);
+        ${StyledCard} > div {
+            padding: 0;
+            margin: 0;
+        }
     }	
 	
 `;

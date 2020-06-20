@@ -65,7 +65,8 @@ const Content = ({data, children, header}) => (
 	          id={`currentData.${header}`}
 	          defaultMessage={header}
 	        />
+			: &nbsp;
+			{ data ?? <CircularProgress thickness={4} size={25}/>}
 		</h3>
-		{data ? <h3>{data}</h3> :  <CircularProgress />}
 	</CardContent>
 )
