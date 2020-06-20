@@ -12,6 +12,10 @@ const VIKING = 1;
 
 const StyledTabs = styled(Tabs)`
 	padding-bottom: 0.5rem;
+	background: #292929;
+	button, label, input {
+		color: white;
+	}
 `;
 
 const Container = styled(Card)`
@@ -35,19 +39,20 @@ const TableBodyContainer = styled(TableBody)`
 
 const StyledTable = styled(Table)`
 	[role="cell"] {
-		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2.8em' : '2em' };
+		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2.8em' : '2.1em' };
 	}
 	[role="columnheader"] {
 		font-weight: bold;
-		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2em' : '1.1em' };
+		padding: 0.5rem ${({data}) => data === PATHFINDER ? '2em' : '1.25em' };
 	}
 	[role="row"] {
 		&:nth-of-type(even) {
-      		background: lightblue;
+      		background: darkgray;
     	}
 	}
 	[role="rowgroup"] [role="row"] {
 		background: #84a1aa;
+		display: inline-block;
 	}
 `;
 

@@ -28,7 +28,7 @@ export const SlideShowContainer = styled(Card)`
 	height: 100%;
 	> img {
 		height: 100%;
-		scale: 1.5;
+		scale: 2;
 		margin: 1em 0;
 	}
 `;

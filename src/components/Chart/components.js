@@ -18,6 +18,7 @@ const OptionsContainer = styled.div`
 		button {
 			background: black;
 			color: white;
+			border: 1px solid #151515;
 		}
 	}
 	button.Mui-selected {

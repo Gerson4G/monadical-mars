@@ -5,6 +5,7 @@ const StyledCard = styled(Card)`
     margin: 1em;
     width: 10em;
     text-align: center;
+    && { background: #4b4b4b; color: white; }
     .first-row & {
         width: 14em;
     }
@@ -13,6 +14,11 @@ const StyledCard = styled(Card)`
 const Container = styled(Card)`
 	margin: 0 auto;
     height: 100%;
+    
+    > div {
+        background: #292929;
+    }
+
     > div:first-child {
         display: grid;
     	grid-template-columns: repeat(2, 1fr);

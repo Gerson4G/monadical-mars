@@ -7,11 +7,11 @@ const Container = styled.div`
     grid-gap: 10px;
 
     > div {
-        opacity: 0.7;
+        opacity: 0.8;
     }
 
     > div:not(:first-child) {
-        width: 40em;
+        width: 45em;
         margin: auto;
     }
 
@@ -39,6 +39,10 @@ const Container = styled.div`
     > div:nth-child(5) {
         grid-column: 2 ;
         grid-row: 3;
+    }
+
+    > div:nth-child(2), > div:nth-child(4) {
+        width: 50em;
     }
 `;
 
