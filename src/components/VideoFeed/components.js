@@ -34,11 +34,11 @@ export const Video = styled.video`
 
 export const Presentation = styled.div`
  	position: absolute;
-    left: 50.3%;
+    
     z-index: 2;
     background: black;
 	height: ${({height}) => height ? `${height}px` : '49%'};
-	width: 49.3%;
+	width: ${({width}) => width ? `${width}px` : '49%'};
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

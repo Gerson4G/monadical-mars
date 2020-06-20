@@ -16,6 +16,7 @@ const StyledTabs = styled(Tabs)`
 
 const Container = styled(Card)`
 	min-height: 20em;
+	height: 100%;
 	.Mui-selected {
 		background: #ffe8e8;
 	}

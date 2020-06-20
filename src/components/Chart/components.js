@@ -2,7 +2,11 @@ import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 
-const StyledCard = styled(Card)``;
+const StyledCard = styled(Card)`
+	display: flex;
+	width: 90%;
+	margin: auto;
+`;
 
 const OptionsContainer = styled.div`
  	flex-grow: 1;
@@ -11,9 +15,14 @@ const OptionsContainer = styled.div`
 	width: ${({width}) => width};
 	.MuiTabs-scroller {
 		overflow: auto!important;
+		button {
+			background: black;
+			color: white;
+		}
 	}
-	.Mui-selected {
+	button.Mui-selected {
 		background: #ffe8e8;
+		color: black;
 	}
 `;
 

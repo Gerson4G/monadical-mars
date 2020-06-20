@@ -8,16 +8,17 @@ const VideoFeed = (props) => {
 
   const [playing, playVideo] = useState(false);
   const [height, setHeight] = useState(null);
+  const [width, setWidth] = useState(null);
   const containerRef = createRef(null);
 
   useEffect(() => {
     setHeight(containerRef.current.clientHeight);
-    console.log(containerRef.current.clientHeight)
+    setWidth(containerRef.current.clientWidth);
   }, [containerRef])
 
     return (
         <Container raised ref={containerRef}>
-        	<Presentation height={height} playing={playing}>
+        	<Presentation height={height} width={width} playing={playing}>
         		<PlayCircleFilledIcon onClick={() => playVideo(true)} className='play-icon'/>
         		<h2><FormattedMessage id="video.placeholder"/></h2>
         	</Presentation>

@@ -60,12 +60,12 @@ export default CurrentData;
 
 const Content = ({data, children, header}) => (
 	<CardContent>
-		<h1>
+		<h3>
 			<FormattedMessage
 	          id={`currentData.${header}`}
 	          defaultMessage={header}
 	        />
-		</h1>
-		{data ? <h2>{data}</h2> :  <CircularProgress />}
+		</h3>
+		{data ? <h3>{data}</h3> :  <CircularProgress />}
 	</CardContent>
 )

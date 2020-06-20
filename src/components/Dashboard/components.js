@@ -10,9 +10,15 @@ const Container = styled.div`
         opacity: 0.7;
     }
 
+    > div:not(:first-child) {
+        width: 40em;
+        margin: auto;
+    }
+
     > div:first-child {
         grid-column: 1 / -1 ;
         grid-row: 1;
+        background: black;
     }
 
     > div:nth-child(2) {
@@ -44,7 +50,7 @@ const Background = styled.span`
     right:0;
     left:0;
     background-repeat: round;
-    height: 173vh;
+    height: 140vh;
 `;
 
 export { Container, Background };

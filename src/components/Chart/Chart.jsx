@@ -90,9 +90,7 @@ export default function Chart() {
     }
 
     return (
-        <StyledCard raised
-        ref={containerRef}
-        style={{display: 'flex', width: "100%"}}>
+        <StyledCard raised ref={containerRef}>
             <div>
                 <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
