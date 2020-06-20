@@ -69,8 +69,8 @@ export default function Chart() {
     const renderTabs = () => {
         let tabs = [];
         for(let i = 1; i < days; i++){
-            const label = intl.formatMessage({ id: 'chart.day_selection', values: {i} })
-            tabs = tabs.concat(<Tab key={i} label={label} {...a11yProps(i)} />);
+            const label = intl.formatMessage({ id: 'chart.day_selection'});
+            tabs = tabs.concat(<Tab key={i} label={`${label} ${i}`} {...a11yProps(i)} />);
         }
         return tabs;
     }
@@ -96,7 +96,7 @@ export default function Chart() {
             <div>
                 <OptionsContainer width={optionsWidth}>
                     <AppBar position="static" color="default">
-                        <SearchInput value={query} onChange={tabsSearch} label={<FormattedMessage id='chart.searchinput' default='' />} variant="filled" />
+                        <SearchInput value={query} onChange={tabsSearch} label={<FormattedMessage id='chart.searchinput' defaultMessage='' />} variant="filled" />
                         <Tabs
                             value={dayToShow}
                             onChange={(e, day) => setDay(day)}

@@ -68,7 +68,7 @@ const TableData = (props) => {
   }
 
   const SortableHeader = ({name, label, align = 'right'}) => (
-    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}><FormattedMessage id={`table.${headers[label.toLowerCase()]}`} default={label}/></TableCell>
+    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}><FormattedMessage id={`table.${headers[label.toLowerCase()]}`} defaultMessage={label}/></TableCell>
   )
 
   const renderRow = ({style, index}) => {
@@ -125,7 +125,7 @@ const TableData = (props) => {
             </TableRow>
           </TableHeadGroup>
             <List
-              height={350}
+              height={containerNode.clientHeight ? (containerNode.clientHeight - 95) : 0}
               itemCount={rows.length ?? 0}
               itemSize={35}
               width={containerNode?.clientWidth ?? 0}

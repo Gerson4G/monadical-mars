@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import {Background} from './components/Dashboard/components';
 import MenuBar from './components/MenuBar/MenuBar';
 import * as serviceWorker from './serviceWorker';
 import {IntlProvider} from "react-intl";
@@ -20,6 +21,7 @@ const App = (props) => {
 
 	return(
   	<IntlProvider locale={language} messages={data[language]}>
+		<Background />
 		<MenuBar setLanguage={setLanguage} selectScreen={selectScreen}/>
 	    <Dashboard screen={screen}/>
 	</IntlProvider>

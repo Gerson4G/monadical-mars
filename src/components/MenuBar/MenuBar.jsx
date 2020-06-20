@@ -1,12 +1,11 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ListSubheader from "@material-ui/core/ListSubheader";
 import {FormattedMessage} from 'react-intl';
-import { StyledMenuIcon, AccountIcon, screens } from './components';
+import { StyledToolbar, StyledMenuIcon, AccountIcon, screens, SpanishFlag } from './components';
 
 const MenuBar = (props) => {
     const { setLanguage, selectScreen } = props;
@@ -33,7 +32,7 @@ const MenuBar = (props) => {
 
     return (
         <AppBar position="static">
-            <Toolbar>
+            <StyledToolbar>
             <StyledMenuIcon
                 edge="start"
                 color="inherit" 
@@ -68,7 +67,7 @@ const MenuBar = (props) => {
             </Menu>
              
                 <Typography variant="h6">
-                News
+                Mars Mission Dashboard
                 </Typography>
                 <AccountIcon
                   edge="start"
@@ -96,9 +95,9 @@ const MenuBar = (props) => {
                 >
                   <ListSubheader><FormattedMessage id='menu.select_language' default='Select a language'/></ListSubheader>
                   <MenuItem onClick={() => changeLanguage('en')}>English</MenuItem>
-                  <MenuItem onClick={() => changeLanguage('es')}>Espanol</MenuItem>
+                  <MenuItem onClick={() => changeLanguage('es')}>Espanol <SpanishFlag /></MenuItem>
               </Menu>
-            </Toolbar>
+            </StyledToolbar>
         </AppBar>
   );
 }

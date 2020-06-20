@@ -25,7 +25,7 @@ const CurrentData = (props) => {
 	return (
 	    <div>
 	    	<Container>
-	    		<div>
+	    		<div className="first-row">
 			      	<StyledCard>
 				      <CardContent>
 				      	Mars time {`<something>`}
@@ -60,12 +60,12 @@ export default CurrentData;
 
 const Content = ({data, children, header}) => (
 	<CardContent>
-		<h3>
+		<h1>
 			<FormattedMessage
 	          id={`currentData.${header}`}
 	          defaultMessage={header}
 	        />
-		</h3>
-		{data ?? <CircularProgress />}
+		</h1>
+		{data ? <h2>{data}</h2> :  <CircularProgress />}
 	</CardContent>
 )

@@ -10,7 +10,7 @@ const Dashboard = (props) => {
 	const { screen } = props;
 	if(!screen || screen === 'dashboard'){
 	  	return (
-		    <Styled.Container className="App">
+		    <Styled.Container>
 		      <Chart />
 		      <Slideshow />
 		      <VideoFeed />

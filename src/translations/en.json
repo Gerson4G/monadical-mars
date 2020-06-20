@@ -18,7 +18,7 @@
 	"video.placeholder": "Here you can see live video sent from mars. Click to Play",
 	"table_data.label_1": "Pathfinder Temperature",
 	"table_data.label_2": "Viking Lander Data",
-	"chart.day_selection": "Day {i}",
+	"chart.day_selection": "Day",
 	"table.header_1": "Row",
 	"table.header_2": "Year"
 }
