@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardContent from '@material-ui/core/CardContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Container, StyledCard } from './components';
+import { ComponentTitle } from '../Dashboard/components';
 import {FormattedMessage} from 'react-intl';
 import { tsvOrCsvToJSON } from '../../utils';
 
@@ -24,6 +25,7 @@ const CurrentData = (props) => {
 
 	return (
 	    <div>
+			<ComponentTitle><FormattedMessage id="currentData.title"/></ComponentTitle>
 	    	<Container>
 	    		<div className="first-row">
 			      	<StyledCard>
@@ -33,7 +35,7 @@ const CurrentData = (props) => {
 				    </StyledCard>
 			      	<StyledCard>
 				      <CardContent>
-				      	Local time {new Date().toLocaleString()}
+				      	Local time <br/> {new Date().toLocaleString()}
 				      </CardContent>
 				    </StyledCard>
 				</div>

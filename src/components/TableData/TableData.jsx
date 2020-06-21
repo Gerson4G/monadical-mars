@@ -5,7 +5,8 @@ import TableRow from '@material-ui/core/TableRow';
 import { useIntl } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tab from '@material-ui/core/Tab';
-import { StyledTabs, PATHFINDER, VIKING, StyledTable, TableHeadGroup, Container, SearchField } from './components';
+import { StyledTabs, PATHFINDER, VIKING, StyledTable, TableHeadGroup, TableContainer, SearchField, Container } from './components';
+import { ComponentTitle } from '../Dashboard/components';
 import { tsvOrCsvToJSON } from '../../utils';
 import {FormattedMessage} from 'react-intl';
 
@@ -100,41 +101,44 @@ const TableData = (props) => {
   }
 
   return (
-    <Container raised ref={setContainerNode}>
-      <StyledTabs
-        value={dataSelected}
-        onChange={changeData}
-        indicatorColor="primary"
-        textColor="primary"
-      >
-          <Tab label={intl.formatMessage({ id: 'table_data.label_1' })} />
-          <Tab label={intl.formatMessage({ id: 'table_data.label_2' })} />
-          <SearchField value={query} label={<FormattedMessage id='table.searchinput' default='' />} />
-      </StyledTabs>
-      {
-        isLoading ? <CircularProgress /> :
-        <StyledTable data={dataSelected} aria-label="simple table" component="div">
-          <TableHeadGroup component="div">
-            <TableRow component="div">
-              <TableCell component="div" align='center'><FormattedMessage id='table.header_1'/></TableCell>
-              {
-                Object.keys(rows[0]).map( header =>
-                  <SortableHeader key={header} name={header} label={header} />
-                )
-              }
-            </TableRow>
-          </TableHeadGroup>
-            <List
-              height={containerNode.clientHeight ? (containerNode.clientHeight - 95) : 0}
-              itemCount={rows.length ?? 0}
-              itemSize={35}
-              width={containerNode?.clientWidth ?? 0}
-              ref={listRef}
-            >
-              {renderRow}
-            </List>
-        </StyledTable>
-      }
+    <Container>
+      <ComponentTitle><FormattedMessage id="table.title"/></ComponentTitle>
+      <TableContainer raised ref={setContainerNode}>
+        <StyledTabs
+          value={dataSelected}
+          onChange={changeData}
+          indicatorColor="primary"
+          textColor="primary"
+        >
+            <Tab label={intl.formatMessage({ id: 'table_data.label_1' })} />
+            <Tab label={intl.formatMessage({ id: 'table_data.label_2' })} />
+            <SearchField value={query} label={<FormattedMessage id='table.searchinput' default='' />} />
+        </StyledTabs>
+        {
+          isLoading ? <CircularProgress /> :
+          <StyledTable data={dataSelected} aria-label="simple table" component="div">
+            <TableHeadGroup component="div">
+              <TableRow component="div">
+                <TableCell component="div" align='center'><FormattedMessage id='table.header_1'/></TableCell>
+                {
+                  Object.keys(rows[0]).map( header =>
+                    <SortableHeader key={header} name={header} label={header} />
+                  )
+                }
+              </TableRow>
+            </TableHeadGroup>
+              <List
+                height={containerNode.clientHeight ? (containerNode.clientHeight - 140) : 0}
+                itemCount={rows.length ?? 0}
+                itemSize={35}
+                width={containerNode?.clientWidth ?? 0}
+                ref={listRef}
+              >
+                {renderRow}
+              </List>
+          </StyledTable>
+        }
+      </TableContainer>
     </Container>
   );
 }

@@ -25,7 +25,7 @@ export const SlideShowContainer = styled(Card)`
 	display: flex;
 	justify-content: center;
 	align-item: center;
-	height: 100%;
+	height: 90%;
 	> img {
 		height: 100%;
 		scale: 2;

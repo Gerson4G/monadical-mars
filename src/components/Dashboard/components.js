@@ -43,6 +43,7 @@ const Container = styled.div`
 
     > div:nth-child(2), > div:nth-child(4) {
         width: 50em;
+        height: 100%;
     }
 `;
 
@@ -57,4 +58,11 @@ const Background = styled.span`
     height: 140vh;
 `;
 
-export { Container, Background };
+const ComponentTitle = styled.h2`
+    margin-bottom: 0;
+    color: white;
+    background: rgb(0,0,0,0.3);
+    width: max-content;
+`;
+
+export { Container, Background, ComponentTitle };

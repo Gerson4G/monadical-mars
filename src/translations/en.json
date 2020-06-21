@@ -20,5 +20,9 @@
 	"table_data.label_2": "Viking Lander Data",
 	"chart.day_selection": "Day",
 	"table.header_1": "Row",
-	"table.header_2": "Year"
+	"table.header_2": "Year",
+	"currentData.title" : "Lastest data received",
+	"video.title" : "Live Video streaming",
+	"slideshow.title" : "Images received",
+	"table.title" : "Complete data received"
 }

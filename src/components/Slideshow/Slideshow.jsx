@@ -2,6 +2,8 @@
 import React, {useState, useEffect} from 'react';
 import Fade from '@material-ui/core/Fade';
 import { arrayBufferToBase64 } from '../../utils';
+import { FormattedMessage } from 'react-intl';
+import { ComponentTitle } from '../Dashboard/components';
 import { BulletPoint, BulletsContainer, SlideShowContainer, Popup } from './components';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -79,6 +81,7 @@ function Slideshow() {
 
     return (
         <div>
+			<ComponentTitle><FormattedMessage id="slideshow.title"/></ComponentTitle>
             <SlideShowContainer raised>
             {
               !images.length ?  <CircularProgress /> : renderImage()

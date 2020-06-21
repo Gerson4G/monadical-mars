@@ -1,8 +1,7 @@
-import Card from '@material-ui/core/Card';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import styled from 'styled-components';
 
-export const Container = styled(Card)`
+export const Container = styled.div`
 `;
 
 export const LiveText = styled.h3`
@@ -37,7 +36,7 @@ export const Presentation = styled.div`
     
     z-index: 2;
     background: black;
-	height: ${({height}) => height ? `${height}px` : '49%'};
+	${({height}) => height && `height: ${height}px;`}
 	width: ${({width}) => width ? `${width}px` : '49%'};
 	display: flex;
 	flex-direction: column;

@@ -10,6 +10,9 @@ import Tabs from '@material-ui/core/Tabs';
 const PATHFINDER = 0;
 const VIKING = 1;
 
+const Container = styled.div`
+`;
+
 const StyledTabs = styled(Tabs)`
 	padding-bottom: 0.5rem;
 	background: #292929;
@@ -18,9 +21,9 @@ const StyledTabs = styled(Tabs)`
 	}
 `;
 
-const Container = styled(Card)`
+const TableContainer = styled(Card)`
 	min-height: 20em;
-	height: 100%;
+	height: 91%;
 	.Mui-selected {
 		background: #ffe8e8;
 	}
@@ -71,4 +74,4 @@ const SearchField = styled(TextField)`
 	}
 `;
 
-export { StyledTabs, PATHFINDER, VIKING, StyledTable, TableBodyContainer, TableHeadGroup, Container, SearchField};
+export { StyledTabs, PATHFINDER, VIKING, StyledTable, TableBodyContainer, TableHeadGroup, TableContainer, SearchField, Container };

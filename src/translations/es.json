@@ -20,5 +20,9 @@
 	"table_data.label_2": "Datos del Viking Lander",
 	"chart.day_selection": "Dia",
 	"table.header_1": "Fila",
-	"table.header_2": "Anio"
+	"table.header_2": "Anio",
+	"currentData.title" : "Ultima datos recibida",
+	"video.title" : "Trasmision de video en vivo",
+	"slideshow.title" : "Imagenes recibidas",
+	"table.title" : "Todos los datos recibidos"
 }
