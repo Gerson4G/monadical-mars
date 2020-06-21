@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
+    font-family: 'Titillium Web', sans-serif;
     background-size: 110%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
