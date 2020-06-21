@@ -21,13 +21,13 @@ const Dashboard = (props) => {
 	}
 	else{
 		return(
-			<>
+		    <Styled.SingleContainer>
 				{ screen === 'chart' && <Chart />}
 				{ screen === 'slideshow' && <Slideshow />}
 				{ screen === 'videofeed' && <VideoFeed />}
 				{ screen === 'tabledata' && <TableData />}
 				{ screen === 'currentdata' && <CurrentData />}
-			</>
+			</Styled.SingleContainer>
 		);
 	}
 

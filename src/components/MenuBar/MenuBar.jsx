@@ -60,7 +60,7 @@ const MenuBar = (props) => {
             >
               {
                 screens.map( screen =>
-                <MenuItem onClick={() => changeScreen(screen.name)}>
+                <MenuItem key={screen.name} onClick={() => changeScreen(screen.name)}>
                   <FormattedMessage id={`menu.${screen.name}`} default={screen.label}/>
                 </MenuItem>)
               }

@@ -49,7 +49,7 @@ const Container = styled.div`
 `;
 
 const Background = styled.span`
-    background-image: url("data/images/wallpaper_1.jpg");
+    background-image: url("data/images/wallpaper_2.jpg");
     position:absolute;
     top:0;
     bottom:0;
@@ -66,4 +66,13 @@ const ComponentTitle = styled.h2`
     width: max-content;
 `;
 
-export { Container, Background, ComponentTitle };
+const SingleContainer = styled.div`
+    height: 100vh;
+    width: 95vw;
+    z-index: 111;
+    display: block;
+    position: relative;
+    margin: auto;
+`;
+
+export { Container, Background, ComponentTitle, SingleContainer };

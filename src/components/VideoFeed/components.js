@@ -1,4 +1,3 @@
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import styled from 'styled-components';
 
 export const Container = styled.div`

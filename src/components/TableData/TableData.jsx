@@ -4,6 +4,8 @@ import { FixedSizeList as List } from 'react-window';
 import TableRow from '@material-ui/core/TableRow';
 import { useIntl } from 'react-intl';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Tab from '@material-ui/core/Tab';
 import { StyledTabs, PATHFINDER, VIKING, StyledTable, TableHeadGroup, TableContainer, SearchField, Container } from './components';
 import { ComponentTitle } from '../Dashboard/components';
@@ -52,7 +54,7 @@ const TableData = (props) => {
     if(listRef.current && query){
       listRef.current.scrollToItem(query, "center");
     }
-  }, [query])
+  }, [query, listRef])
 
   const sortTable = (name) => {
     setRows(
@@ -65,12 +67,27 @@ const TableData = (props) => {
         }
       })
     );
+    changeSortBy(name);
     changeSort(~~!sort);
   }
 
   const SortableHeader = ({name, label, align = 'right'}) => (
-    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}><FormattedMessage id={`table.${headers[label.toLowerCase()]}`} defaultMessage={label}/></TableCell>
+    <TableCell component="div" variant="head" onClick={() => sortTable(name)} align={align}>
+      {renderHeaderWithSort(label)}
+    </TableCell>
   )
+
+  const renderHeaderWithSort = (name) => {
+    let sort = null;
+    if(name === sortBy && !sort) {
+      sort = <ExpandLessIcon style={{position: 'absolute'}}/>
+    }
+    else if(name === sortBy){
+      sort = <ExpandMoreIcon style={{position: 'absolute'}}/>
+    }
+    console.log(sort)
+    return <><FormattedMessage id={`table.${headers[name.toLowerCase()]}`} defaultMessage={name}/>{sort}</>
+  }
 
   const renderRow = ({style, index}) => {
   return <TableRow component="div" key={index} style={style}>
