@@ -78,15 +78,15 @@ const TableData = (props) => {
   )
 
   const renderHeaderWithSort = (name) => {
-    let sort = null;
+    let sortIcon = null;
     if(name === sortBy && !sort) {
-      sort = <ExpandLessIcon style={{position: 'absolute'}}/>
+      sortIcon = <ExpandMoreIcon style={{position: 'absolute'}}/>
     }
     else if(name === sortBy){
-      sort = <ExpandMoreIcon style={{position: 'absolute'}}/>
+      sortIcon = <ExpandLessIcon style={{position: 'absolute'}}/>
     }
-    console.log(sort)
-    return <><FormattedMessage id={`table.${headers[name.toLowerCase()]}`} defaultMessage={name}/>{sort}</>
+
+    return <><FormattedMessage id={`table.${headers[name.toLowerCase()]}`} defaultMessage={name}/>{sortIcon}</>
   }
 
   const renderRow = ({style, index}) => {
