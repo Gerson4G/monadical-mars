@@ -81,6 +81,7 @@ const SingleContainer = styled.div`
     .table-data-container {
         width: 44%;
         margin: auto;
+        height: 100%;
     }
 `;
 
