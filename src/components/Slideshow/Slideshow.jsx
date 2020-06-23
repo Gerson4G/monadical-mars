@@ -80,7 +80,7 @@ function Slideshow() {
     )
 
     return (
-        <div>
+        <div className='slideshow-container'>
 			<ComponentTitle><FormattedMessage id="slideshow.title"/></ComponentTitle>
             <SlideShowContainer raised>
             {

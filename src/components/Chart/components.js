@@ -6,6 +6,7 @@ const StyledCard = styled(Card)`
 	display: flex;
 	width: 90%;
 	margin: auto;
+	height: 50vh;
 `;
 
 const OptionsContainer = styled.div`

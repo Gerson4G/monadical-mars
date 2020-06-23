@@ -6,6 +6,8 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    max-height: 100%;
+    overflow: auto;
 
     > div {
         opacity: 0.8;
@@ -55,8 +57,6 @@ const Background = styled.span`
     bottom:0;
     right:0;
     left:0;
-    background-repeat: round;
-    height: 140vh;
 `;
 
 const ComponentTitle = styled.h2`
@@ -67,12 +67,16 @@ const ComponentTitle = styled.h2`
 `;
 
 const SingleContainer = styled.div`
-    height: 100vh;
+    height: 90vh;
     width: 95vw;
     z-index: 111;
     display: block;
     position: relative;
     margin: auto;
+
+    > .slideshow-container {
+        height: 70%;
+    }
 `;
 
 export { Container, Background, ComponentTitle, SingleContainer };

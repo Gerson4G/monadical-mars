@@ -11,6 +11,7 @@ const PATHFINDER = 0;
 const VIKING = 1;
 
 const Container = styled.div`
+	height: 90%;
 `;
 
 const StyledTabs = styled(Tabs)`

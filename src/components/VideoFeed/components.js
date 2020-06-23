@@ -1,14 +1,20 @@
+import Card from '@material-ui/core/Card';
 import styled from 'styled-components';
 
 export const Container = styled.div`
+	height: 100%;
 `;
 
 export const LiveText = styled.h3`
 	z-index: 10;
-	position: absolute;
 	margin-left: 2em;
 	animation: color-animation 6s infinite linear alternate;
 	visibility: ${({playing}) => playing ? 'visible' : 'hidden'};
+	top: 1em;
+	left: 1em;
+	position: relative;
+	margin: 0;
+	padding: 0;
 
 	@keyframes color-animation {
 	    0% {
@@ -24,19 +30,15 @@ export const LiveText = styled.h3`
 `;
 
 export const Video = styled.video`
- 	min-width: 100%;
-    min-height: 100%;
-    position: relative;
-    z-index: 1;
+	 margin-top: -3em;
+	 height: 105%;
 `;
 
 export const Presentation = styled.div`
- 	position: absolute;
-    
     z-index: 2;
     background: black;
-	${({height}) => height && `height: ${height}px;`}
-	width: ${({width}) => width ? `${width}px` : '49%'};
+	height: 100%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -60,4 +62,8 @@ export const Presentation = styled.div`
 			transition: all 0.5s ease-out;
 		}
 	}
+`;
+
+export const StyledCard = styled(Card)`
+	height: 90%;
 `;
