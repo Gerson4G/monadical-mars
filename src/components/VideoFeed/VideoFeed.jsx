@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect, createRef} from 'react';
+import React, {useState} from 'react';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import { FormattedMessage } from 'react-intl';
 import { ComponentTitle } from '../Dashboard/components';
