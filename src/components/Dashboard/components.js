@@ -77,6 +77,11 @@ const SingleContainer = styled.div`
     > .slideshow-container {
         height: 70%;
     }
+
+    .table-data-container {
+        width: 44%;
+        margin: auto;
+    }
 `;
 
 export { Container, Background, ComponentTitle, SingleContainer };

@@ -120,7 +120,7 @@ const TableData = (props) => {
   return (
     <Container>
       <ComponentTitle><FormattedMessage id="table.title"/></ComponentTitle>
-      <TableContainer raised ref={setContainerNode}>
+      <TableContainer className="table-data-container" raised ref={setContainerNode}>
         <StyledTabs
           value={dataSelected}
           onChange={changeData}
