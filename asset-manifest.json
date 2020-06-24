@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/monadical-mars/static/js/main.c6e29c85.chunk.js",
+    "main.js.map": "/monadical-mars/static/js/main.c6e29c85.chunk.js.map",
+    "runtime-main.js": "/monadical-mars/static/js/runtime-main.69c11bfc.js",
+    "runtime-main.js.map": "/monadical-mars/static/js/runtime-main.69c11bfc.js.map",
+    "static/js/2.0d3711e6.chunk.js": "/monadical-mars/static/js/2.0d3711e6.chunk.js",
+    "static/js/2.0d3711e6.chunk.js.map": "/monadical-mars/static/js/2.0d3711e6.chunk.js.map",
+    "index.html": "/monadical-mars/index.html",
+    "precache-manifest.0e96bfc7e7d1b2266cb899a7425b5e53.js": "/monadical-mars/precache-manifest.0e96bfc7e7d1b2266cb899a7425b5e53.js",
+    "service-worker.js": "/monadical-mars/service-worker.js",
+    "static/js/2.0d3711e6.chunk.js.LICENSE.txt": "/monadical-mars/static/js/2.0d3711e6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.69c11bfc.js",
+    "static/js/2.0d3711e6.chunk.js",
+    "static/js/main.c6e29c85.chunk.js"
+  ]
+}
